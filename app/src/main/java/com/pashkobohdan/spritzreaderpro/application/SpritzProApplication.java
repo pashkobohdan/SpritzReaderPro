@@ -1,4 +1,4 @@
-package com.pashkobohdan.spritzreaderpro;
+package com.pashkobohdan.spritzreaderpro.application;
 
 import android.app.Application;
 

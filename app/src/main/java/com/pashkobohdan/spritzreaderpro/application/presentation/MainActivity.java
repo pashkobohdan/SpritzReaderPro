@@ -1,15 +1,18 @@
-package com.pashkobohdan.spritzreaderpro;
+package com.pashkobohdan.spritzreaderpro.application.presentation;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
+import com.pashkobohdan.spritzreaderpro.R;
+import com.pashkobohdan.spritzreaderpro.application.SpritzProApplication;
+
 import ru.terrakok.cicerone.Navigator;
 import ru.terrakok.cicerone.android.SupportFragmentNavigator;
 
-import static com.pashkobohdan.spritzreaderpro.Screen.DETAILS_SCREEN;
-import static com.pashkobohdan.spritzreaderpro.Screen.LIST_SCREEN;
+import static com.pashkobohdan.spritzreaderpro.application.presentation.Screen.DETAILS_SCREEN;
+import static com.pashkobohdan.spritzreaderpro.application.presentation.Screen.LIST_SCREEN;
 
 public class MainActivity extends AppCompatActivity {
 
