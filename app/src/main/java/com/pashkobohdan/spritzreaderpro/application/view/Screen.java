@@ -1,4 +1,4 @@
-package com.pashkobohdan.spritzreaderpro.application.presentation;
+package com.pashkobohdan.spritzreaderpro.application.view;
 
 /**
  * Created by bohdan on 07.08.17.

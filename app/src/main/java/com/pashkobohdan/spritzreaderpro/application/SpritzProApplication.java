@@ -6,10 +6,6 @@ import ru.terrakok.cicerone.Cicerone;
 import ru.terrakok.cicerone.NavigatorHolder;
 import ru.terrakok.cicerone.Router;
 
-/**
- * Created by bohdan on 07.08.17.
- */
-
 public class SpritzProApplication extends Application {
 
     public static SpritzProApplication INSTANCE;

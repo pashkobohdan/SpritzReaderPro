@@ -1,0 +1,19 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--<data/> TODO-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!--TOOD thin about header.xml file with back button,
+        title and others things-->
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:id="@+id/book_list_recycler_view"
+            android:layout_height="wrap_content"/>
+        <!--TODO-->
+    </LinearLayout>
+
+</layout>

@@ -33,9 +33,23 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.3.1'
     testCompile 'junit:junit:4.12'
 
-
+//    moxy (mvp)
     compile 'com.arello-mobile:moxy:1.1.1'
     compile 'com.arello-mobile:moxy-android:1.1.1'
 
+//    cicerone (navigation)
     compile 'ru.terrakok.cicerone:cicerone:1.0'
+
+//    dagger (injection)
+    compile 'com.google.dagger:dagger:2.10'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.10'
+
+//    recycler view (lists)
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:recyclerview-v7:25.3.1'
+    compile 'com.android.support:cardview-v7:25.3.1'
+
+//butterknife (ui binding)
+    compile 'com.jakewharton:butterknife:8.8.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.0'
 }
