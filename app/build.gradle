@@ -33,9 +33,14 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.3.1'
     testCompile 'junit:junit:4.12'
 
+//
+    compile 'com.android.support:appcompat-v7:25.3.1'
+
 //    moxy (mvp)
-    compile 'com.arello-mobile:moxy:1.1.1'
-    compile 'com.arello-mobile:moxy-android:1.1.1'
+    compile 'com.arello-mobile:moxy:1.5.3'
+    annotationProcessor 'com.arello-mobile:moxy-compiler:1.5.3'
+    compile 'com.arello-mobile:moxy-android:1.5.3'
+    compile 'com.arello-mobile:moxy-app-compat:1.5.3'
 
 //    cicerone (navigation)
     compile 'ru.terrakok.cicerone:cicerone:1.0'

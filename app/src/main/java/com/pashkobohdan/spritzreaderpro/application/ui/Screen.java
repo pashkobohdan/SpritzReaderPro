@@ -1,8 +1,4 @@
-package com.pashkobohdan.spritzreaderpro.application.view;
-
-/**
- * Created by bohdan on 07.08.17.
- */
+package com.pashkobohdan.spritzreaderpro.application.ui;
 
 public class Screen {
     public static final String LIST_SCREEN = "ListScreen";

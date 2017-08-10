@@ -2,27 +2,30 @@ package com.pashkobohdan.spritzreaderpro.application;
 
 import android.app.Application;
 
-import ru.terrakok.cicerone.Cicerone;
-import ru.terrakok.cicerone.NavigatorHolder;
-import ru.terrakok.cicerone.Router;
+import com.pashkobohdan.spritzreaderpro.application.di.ApplicationComponent;
+import com.pashkobohdan.spritzreaderpro.application.di.DaggerApplicationComponent;
+import com.pashkobohdan.spritzreaderpro.application.di.modules.AppModule;
+import com.pashkobohdan.spritzreaderpro.application.di.modules.NavigationModule;
 
 public class SpritzProApplication extends Application {
 
     public static SpritzProApplication INSTANCE;
-    private Cicerone<Router> cicerone;
+    private ApplicationComponent component;
 
     @Override
     public void onCreate() {
         super.onCreate();
         INSTANCE = this;
-        cicerone = Cicerone.create();
     }
 
-    public NavigatorHolder getNavigatorHolder() {
-        return cicerone.getNavigatorHolder();
-    }
-
-    public Router getRouter() {
-        return cicerone.getRouter();
+    public ApplicationComponent getApplicationComponent() {
+        if (component == null) {
+            component = DaggerApplicationComponent
+                    .builder()
+                    .appModule(new AppModule(this))
+                    .navigationModule(new NavigationModule())
+                    .build();
+        }
+        return component;
     }
 }
