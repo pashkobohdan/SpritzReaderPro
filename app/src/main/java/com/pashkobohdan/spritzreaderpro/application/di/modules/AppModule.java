@@ -5,7 +5,6 @@ import android.app.Application;
 import android.content.Context;
 
 import com.pashkobohdan.spritzreaderpro.application.mvp.bookList.BookListPresenter;
-import com.pashkobohdan.spritzreaderpro.application.ui.activities.TitleChangeableActivity;
 import com.pashkobohdan.spritzreaderpro.application.ui.common.EmptyActivityLifecycleCallbacks;
 
 import dagger.Module;
@@ -34,10 +33,5 @@ public class AppModule {
     @Provides
     public BookListPresenter provideBookListPresenter() {
         return new BookListPresenter();
-    }
-
-    @Provides
-    public TitleChangeableActivity provideTitleChangeableActivity() {
-        return (TitleChangeableActivity) applicationContext;
     }
 }

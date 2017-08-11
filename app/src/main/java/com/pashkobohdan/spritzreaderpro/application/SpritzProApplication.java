@@ -5,7 +5,6 @@ import android.app.Application;
 import com.pashkobohdan.spritzreaderpro.application.di.ApplicationComponent;
 import com.pashkobohdan.spritzreaderpro.application.di.DaggerApplicationComponent;
 import com.pashkobohdan.spritzreaderpro.application.di.modules.AppModule;
-import com.pashkobohdan.spritzreaderpro.application.di.modules.NavigationModule;
 
 public class SpritzProApplication extends Application {
 
@@ -23,7 +22,6 @@ public class SpritzProApplication extends Application {
             component = DaggerApplicationComponent
                     .builder()
                     .appModule(new AppModule(this))
-                    .navigationModule(new NavigationModule())
                     .build();
         }
         return component;

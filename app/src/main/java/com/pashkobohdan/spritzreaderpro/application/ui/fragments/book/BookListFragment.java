@@ -26,6 +26,8 @@ public class BookListFragment extends AbstractScreenFragment<BookListPresenter> 
     @InjectPresenter
     BookListPresenter presenter;
 
+    private BookListFragment_ViewBinding binding;
+
     @ProvidePresenter
     public BookListPresenter getSamplePresenter() {
         BookListPresenter presenter = presenterProvider.get();
@@ -42,6 +44,7 @@ public class BookListFragment extends AbstractScreenFragment<BookListPresenter> 
         SpritzProApplication.INSTANCE.getApplicationComponent().inject(this);
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
+        //set binding !
     }
 
     @Nullable
@@ -56,7 +59,7 @@ public class BookListFragment extends AbstractScreenFragment<BookListPresenter> 
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        //TODO
+        setHeaderTitle("Book list fragment");
     }
 
     @Override

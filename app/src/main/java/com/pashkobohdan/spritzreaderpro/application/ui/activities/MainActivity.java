@@ -17,14 +17,13 @@ import ru.terrakok.cicerone.NavigatorHolder;
 import ru.terrakok.cicerone.Router;
 import ru.terrakok.cicerone.android.SupportFragmentNavigator;
 
-import static com.pashkobohdan.spritzreaderpro.application.ui.Screen.DETAILS_SCREEN;
-import static com.pashkobohdan.spritzreaderpro.application.ui.Screen.LIST_SCREEN;
+import static com.pashkobohdan.spritzreaderpro.application.ui.Screen.BOOK_LIST;
+import static com.pashkobohdan.spritzreaderpro.application.ui.Screen.BOOK_READING;
 
 public class MainActivity extends AppCompatActivity implements TitleChangeableActivity {
 
     @Inject
     NavigatorHolder navigatorHolder;
-
     @Inject
     Router router;
 
@@ -32,9 +31,9 @@ public class MainActivity extends AppCompatActivity implements TitleChangeableAc
         @Override
         protected Fragment createFragment(String screenKey, Object data) {
             switch (screenKey) {
-                case LIST_SCREEN:
+                case BOOK_LIST:
                     return BookListFragment.getNewInstance();
-                case DETAILS_SCREEN:
+                case BOOK_READING:
                     //TODO
                 default:
                     throw new IllegalArgumentException("Not supported screen: " + screenKey);
@@ -70,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements TitleChangeableAc
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        router.navigateTo(Screen.LIST_SCREEN);
+        router.navigateTo(Screen.BOOK_LIST);
     }
 
     @Override

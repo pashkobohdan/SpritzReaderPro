@@ -1,5 +1,7 @@
 package com.pashkobohdan.spritzreaderpro.application.di.modules;
 
+import javax.inject.Singleton;
+
 import dagger.Module;
 import dagger.Provides;
 import ru.terrakok.cicerone.Cicerone;
@@ -16,11 +18,13 @@ public class NavigationModule {
     }
 
     @Provides
+    @Singleton
     public NavigatorHolder provideNavigatorHolder() {
         return cicerone.getNavigatorHolder();
     }
 
     @Provides
+    @Singleton
     public Router provideRouter() {
         return cicerone.getRouter();
     }

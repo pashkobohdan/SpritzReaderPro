@@ -1,5 +1,6 @@
 package com.pashkobohdan.spritzreaderpro.application.ui.fragments.common;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import com.arellomobile.mvp.MvpAppCompatFragment;
@@ -20,7 +21,7 @@ public abstract class AbstractScreenFragment<T extends AbstractPresenter> extend
     protected Provider<T> presenterProvider;
 
     @Inject
-    TitleChangeableActivity titleChangeableActivity;
+    Context context;
 
     @Inject
     protected T presenter;
@@ -67,6 +68,8 @@ public abstract class AbstractScreenFragment<T extends AbstractPresenter> extend
     }
 
     protected void setHeaderTitle(String title) {
-        getActivity().setTitle(title);
+        if (context instanceof TitleChangeableActivity) {
+            ((TitleChangeableActivity) context).setTitle(title);
+        }
     }
 }

@@ -17,6 +17,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    dataBinding {
+        enabled = true
+    }
 }
 
 repositories {
@@ -33,8 +36,11 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.3.1'
     testCompile 'junit:junit:4.12'
 
-//
+//    Support library (recycler view, etc)
     compile 'com.android.support:appcompat-v7:25.3.1'
+
+//    Data binding
+//    apply plugin: 'com.android.databinding'
 
 //    moxy (mvp)
     compile 'com.arello-mobile:moxy:1.5.3'
