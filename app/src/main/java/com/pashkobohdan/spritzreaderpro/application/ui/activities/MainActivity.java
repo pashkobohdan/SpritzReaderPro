@@ -7,7 +7,7 @@ import android.widget.Toast;
 
 import com.pashkobohdan.spritzreaderpro.R;
 import com.pashkobohdan.spritzreaderpro.application.SpritzProApplication;
-import com.pashkobohdan.spritzreaderpro.application.ui.Screen;
+import com.pashkobohdan.spritzreaderpro.application.ui.common.CustomFragmentNavigator;
 import com.pashkobohdan.spritzreaderpro.application.ui.fragments.book.BookListFragment;
 
 import javax.inject.Inject;
@@ -15,7 +15,7 @@ import javax.inject.Inject;
 import ru.terrakok.cicerone.Navigator;
 import ru.terrakok.cicerone.NavigatorHolder;
 import ru.terrakok.cicerone.Router;
-import ru.terrakok.cicerone.android.SupportFragmentNavigator;
+import ru.terrakok.cicerone.commands.Forward;
 
 import static com.pashkobohdan.spritzreaderpro.application.ui.Screen.BOOK_LIST;
 import static com.pashkobohdan.spritzreaderpro.application.ui.Screen.BOOK_READING;
@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements TitleChangeableAc
     @Inject
     Router router;
 
-    private Navigator navigator = new SupportFragmentNavigator(getSupportFragmentManager(), R.id.main_container) {
+    private Navigator navigator = new CustomFragmentNavigator(getSupportFragmentManager(), R.id.main_container) {
         @Override
         protected Fragment createFragment(String screenKey, Object data) {
             switch (screenKey) {
@@ -59,8 +59,8 @@ public class MainActivity extends AppCompatActivity implements TitleChangeableAc
 
     @Override
     protected void onPause() {
-        super.onPause();
         navigatorHolder.removeNavigator();
+        super.onPause();
     }
 
     @Override
@@ -69,12 +69,17 @@ public class MainActivity extends AppCompatActivity implements TitleChangeableAc
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        router.navigateTo(Screen.BOOK_LIST);
+        if (savedInstanceState == null) {
+            navigator.applyCommand(new Forward(BOOK_LIST, null));
+        } else {
+            navigator.applyCommand(new Forward(BOOK_LIST, null));
+            //TODO maybe don't need this because I have a moxy (with stateStrategy)
+        }
     }
 
     @Override
     public void setTitle(String title) {
-        //TODO (now just setTitle(...) but can set to another custom header
-        setTitle(title);
+//        TODO (now just setTitle(...) but can set to another custom header
+//        setTitle(title);
     }
 }
