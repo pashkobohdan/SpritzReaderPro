@@ -2,10 +2,12 @@
 
 buildscript {
     repositories {
-        jcenter()
+//        jcenter()
+        mavenCentral()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.2.3'
+        classpath 'me.tatarka:gradle-retrolambda:3.7.0'
 
 //    Data binding
 //        classpath 'com.android.databinding:dataBinder:1.0-rc0'
@@ -18,7 +20,8 @@ buildscript {
 
 allprojects {
     repositories {
-        jcenter()
+//        jcenter()
+        mavenCentral()
     }
 }
 

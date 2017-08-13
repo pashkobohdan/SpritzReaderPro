@@ -1,6 +1,7 @@
 package com.pashkobohdan.spritzreaderpro.application.di;
 
 import com.pashkobohdan.spritzreaderpro.application.di.modules.AppModule;
+import com.pashkobohdan.spritzreaderpro.application.di.modules.DatabaseModule;
 import com.pashkobohdan.spritzreaderpro.application.di.modules.NavigationModule;
 import com.pashkobohdan.spritzreaderpro.application.ui.activities.MainActivity;
 import com.pashkobohdan.spritzreaderpro.application.ui.fragments.book.BookListFragment;
@@ -11,6 +12,7 @@ import dagger.Component;
 
 @Component(modules = {
         AppModule.class,
+        DatabaseModule.class,
         NavigationModule.class
 })
 @Singleton
