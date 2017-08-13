@@ -10,6 +10,10 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        jackOptions {
+            enabled true
+        }
     }
     buildTypes {
         release {
@@ -17,8 +21,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    dataBinding {
-        enabled = true
+//    dataBinding { // problem with JACK option
+//        enabled = true
+//    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
@@ -29,44 +37,38 @@ repositories {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-
-//    JUnit, Mockito
+    //    JUnit, Mockito
     testCompile 'junit:junit:4.12'
     testCompile 'org.mockito:mockito-core:1.10.19'
-
-//    Support library (recycler view, coordinator layout, etc)
+    //    Support library (recycler view, coordinator layout, etc)
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support:design:25.3.1'
-
-//    Data binding
-//    apply plugin: 'com.android.databinding'
-
-//    moxy (mvp)
+    //    Data binding
+    //    apply plugin: 'com.android.databinding'
+    //    moxy (mvp)
     compile 'com.arello-mobile:moxy:1.5.3'
     annotationProcessor 'com.arello-mobile:moxy-compiler:1.5.3'
     compile 'com.arello-mobile:moxy-android:1.5.3'
     compile 'com.arello-mobile:moxy-app-compat:1.5.3'
-
-//    cicerone (navigation)
+    //    cicerone (navigation)
     compile 'ru.terrakok.cicerone:cicerone:1.0'
-
-//    dagger (injection)
+    //    dagger (injection)
     compile 'com.google.dagger:dagger:2.10'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.10'
-
-//    recycler view (lists)
+    //    recycler view (lists)
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support:recyclerview-v7:25.3.1'
     compile 'com.android.support:cardview-v7:25.3.1'
-
-//    butterknife (ui binding)
+    //    butterknife (ui binding)
     compile 'com.jakewharton:butterknife:8.8.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.0'
-
-//    ormlite (database)
+    //    ormlite (database)
     compile 'com.j256.ormlite:ormlite-android:4.45'
+    //    RxJava
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    compile 'io.reactivex.rxjava2:rxjava:2.1.2'
 }

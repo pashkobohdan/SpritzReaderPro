@@ -2,11 +2,12 @@ package com.pashkobohdan.spritzreaderpro.application.model.dto.book;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
+import com.pashkobohdan.spritzreaderpro.application.model.dto.common.CommonDTO;
 
 import java.io.File;
 
 @DatabaseTable(tableName = "bookTitleImages")
-public class BookTitleImageDTO {
+public class BookTitleImageDTO extends CommonDTO {
 
     @DatabaseField(generatedId = true)
     private int id;
