@@ -5,6 +5,7 @@ import android.app.Application;
 import com.pashkobohdan.spritzreaderpro.application.di.ApplicationComponent;
 import com.pashkobohdan.spritzreaderpro.application.di.DaggerApplicationComponent;
 import com.pashkobohdan.spritzreaderpro.application.di.modules.AppModule;
+import com.pashkobohdan.spritzreaderpro.application.model.database.ormlite.common.HelperFactory;
 
 public class SpritzProApplication extends Application {
 
@@ -15,6 +16,13 @@ public class SpritzProApplication extends Application {
     public void onCreate() {
         super.onCreate();
         INSTANCE = this;
+        HelperFactory.setHelper(getApplicationContext());
+    }
+
+    @Override
+    public void onTerminate() {
+        HelperFactory.releaseHelper();
+        super.onTerminate();
     }
 
     public ApplicationComponent getApplicationComponent() {
