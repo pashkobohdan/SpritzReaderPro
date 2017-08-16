@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 
-import com.pashkobohdan.spritzreaderpro.application.mvp.bookList.BookListPresenter;
 import com.pashkobohdan.spritzreaderpro.application.ui.common.EmptyActivityLifecycleCallbacks;
 
 import dagger.Module;
@@ -28,10 +27,5 @@ public class AppModule {
     @Provides
     public Context provideContext() {
         return applicationContext;
-    }
-
-    @Provides
-    public BookListPresenter provideBookListPresenter() {
-        return new BookListPresenter();
     }
 }
