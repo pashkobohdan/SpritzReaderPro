@@ -28,6 +28,9 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    packagingOptions {
+        exclude 'META-INF/rxjava.properties'
+    }
 }
 
 repositories {
@@ -77,6 +80,7 @@ dependencies {
     compile 'com.j256.ormlite:ormlite-android:4.45'
 
     //    RxJava
+    compile 'io.reactivex:rxjava:1.1.6'
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
     compile 'io.reactivex.rxjava2:rxjava:2.1.2'
 }

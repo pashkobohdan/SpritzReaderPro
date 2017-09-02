@@ -1,20 +1,20 @@
-<LinearLayout
+<RelativeLayout
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!--TOOD thin about header.xml file with back button,
-    title and others things-->
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="HELLO MY FIRST FRAGMENT" />
+    <ProgressBar
+        android:id="@+id/fragment_book_list_waitem_mask"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_height="wrap_content" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/book_list_recycler_view"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_width="match_parent" />
-    <!--TODO-->
-</LinearLayout>
+
+</RelativeLayout>
