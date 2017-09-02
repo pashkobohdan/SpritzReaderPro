@@ -2,4 +2,5 @@
 <resources>
     <string name="app_name">Spritz Reader Pro</string>
     <string name="image_of_book">Изображение книги</string>
+    <string name="add_book">Добавить книгу</string>
 </resources>

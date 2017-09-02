@@ -83,4 +83,7 @@ dependencies {
     compile 'io.reactivex:rxjava:1.1.6'
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
     compile 'io.reactivex.rxjava2:rxjava:2.1.2'
+
+    //    Multi FAB
+    compile 'com.github.clans:fab:1.6.4'
 }

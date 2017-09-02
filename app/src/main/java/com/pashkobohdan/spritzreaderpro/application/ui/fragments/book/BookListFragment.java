@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
+import com.github.clans.fab.FloatingActionButton;
+import com.github.clans.fab.FloatingActionMenu;
 import com.pashkobohdan.spritzreaderpro.R;
 import com.pashkobohdan.spritzreaderpro.application.SpritzProApplication;
 import com.pashkobohdan.spritzreaderpro.application.model.dto.book.BookDTO;
@@ -33,6 +35,8 @@ import butterknife.ButterKnife;
 
 public class BookListFragment extends AbstractListFragment<BookListPresenter, BookDTO> implements BookListView {
 
+    private static final int mScrollOffset = 4;
+
     @InjectPresenter
     BookListPresenter presenter;
     @Inject
@@ -42,6 +46,14 @@ public class BookListFragment extends AbstractListFragment<BookListPresenter, Bo
     RecyclerView bookListRecyclerView;
     @BindView(R.id.fragment_book_list_waitem_mask)
     ProgressBar waiterProgressBar;
+    @BindView(R.id.add_book_fab_menu)
+    FloatingActionMenu addBookActionMenu;
+    @BindView(R.id.add_book_from_file_fab)
+    FloatingActionButton addBookFromFileButton;
+    @BindView(R.id.add_book_create_fab)
+    FloatingActionButton createBookButton;
+    @BindView(R.id.add_book_download_fab)
+    FloatingActionButton downloadBookButton;
 
     private ListAdapter adapter;
 
@@ -80,6 +92,30 @@ public class BookListFragment extends AbstractListFragment<BookListPresenter, Bo
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
         bookListRecyclerView.setLayoutManager(mLayoutManager);
         bookListRecyclerView.setAdapter(adapter);
+
+        bookListRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if (Math.abs(dy) > mScrollOffset) {
+                    if (dy > 0) {
+                        addBookActionMenu.hideMenu(true);
+                    } else {
+                        addBookActionMenu.showMenu(true);
+                    }
+                }
+            }
+        });
+
+        addBookFromFileButton.setOnClickListener(v -> {
+            //TODO open select file chooser
+        });
+        createBookButton.setOnClickListener(v -> {
+            //TODO show create book dialog
+        });
+        downloadBookButton.setOnClickListener(v -> {
+            //TODO open download book dialog/fragment
+        });
     }
 
     @Override

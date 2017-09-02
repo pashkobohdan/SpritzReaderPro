@@ -14,13 +14,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:orientation="horizontal"
-            android:padding="10dp"
+            android:padding="8dp"
             android:layout_height="wrap_content">
 
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="60dp"
-                android:src="@mipmap/ic_launcher"
+                android:scaleType="fitCenter"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@drawable/default_book_image_1"
                 android:contentDescription="@string/image_of_book" />
 
             <LinearLayout

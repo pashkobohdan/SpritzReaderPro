@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Spritz Reader Pro</string>
     <string name="image_of_book">Image of book</string>
+    <string name="add_book">Add book</string>
+    <string name="add_book_from_file">Open file</string>
+    <string name="add_book_create">Create new</string>
+    <string name="add_book_download">Download from cloud</string>
 </resources>
