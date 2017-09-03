@@ -3,6 +3,7 @@ package com.pashkobohdan.spritzreaderpro.application.ui.activities;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
 
 import com.pashkobohdan.spritzreaderpro.R;
@@ -15,12 +16,13 @@ import javax.inject.Inject;
 import ru.terrakok.cicerone.Navigator;
 import ru.terrakok.cicerone.NavigatorHolder;
 import ru.terrakok.cicerone.Router;
-import ru.terrakok.cicerone.commands.Forward;
+import ru.terrakok.cicerone.commands.Replace;
 
 import static com.pashkobohdan.spritzreaderpro.application.ui.Screen.BOOK_LIST;
 import static com.pashkobohdan.spritzreaderpro.application.ui.Screen.BOOK_READING;
 
-public class MainActivity extends AppCompatActivity implements TitleChangeableActivity {
+public class MainActivity extends AppCompatActivity implements ToolbarHandler {
+    private static final int CLICK_AGAIN_TO_EXIT_TIME = 2 * 1_000_000_000;
 
     @Inject
     NavigatorHolder navigatorHolder;
@@ -28,6 +30,8 @@ public class MainActivity extends AppCompatActivity implements TitleChangeableAc
     Router router;
 
     private Navigator navigator = new CustomFragmentNavigator(getSupportFragmentManager(), R.id.main_container) {
+        private long lastTryExitTime = 0L;
+
         @Override
         protected Fragment createFragment(String screenKey, Object data) {
             switch (screenKey) {
@@ -47,7 +51,13 @@ public class MainActivity extends AppCompatActivity implements TitleChangeableAc
 
         @Override
         protected void exit() {
-            finish();
+            long currentTime = System.nanoTime();
+            if (currentTime - lastTryExitTime < CLICK_AGAIN_TO_EXIT_TIME) {
+                finish();
+            } else {
+                Toast.makeText(MainActivity.this, getString(R.string.click_again_to_exit), Toast.LENGTH_SHORT).show();
+                lastTryExitTime = currentTime;
+            }
         }
     };
 
@@ -69,17 +79,33 @@ public class MainActivity extends AppCompatActivity implements TitleChangeableAc
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
         if (savedInstanceState == null) {
-            navigator.applyCommand(new Forward(BOOK_LIST, null));
+            navigator.applyCommand(new Replace(BOOK_LIST, null));
         } else {
-            navigator.applyCommand(new Forward(BOOK_LIST, null));
+            navigator.applyCommand(new Replace(BOOK_LIST, null));
             //TODO maybe don't need this because I have a moxy (with stateStrategy)
         }
     }
 
     @Override
     public void setTitle(String title) {
-//        TODO (now just setTitle(...) but can set to another custom header
-//        setTitle(title);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle(title);
+        }
+    }
+
+    @Override
+    public void showBackButton() {
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setHomeButtonEnabled(true);
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        router.exit();
     }
 }

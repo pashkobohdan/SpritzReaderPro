@@ -2,11 +2,12 @@ package com.pashkobohdan.spritzreaderpro.application.ui.fragments.common;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.view.View;
 
 import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.pashkobohdan.spritzreaderpro.application.mvp.common.AbstractPresenter;
 import com.pashkobohdan.spritzreaderpro.application.mvp.common.AbstractScreenView;
-import com.pashkobohdan.spritzreaderpro.application.ui.activities.TitleChangeableActivity;
+import com.pashkobohdan.spritzreaderpro.application.ui.activities.ToolbarHandler;
 
 import java.io.Serializable;
 
@@ -67,9 +68,15 @@ public abstract class AbstractScreenFragment<T extends AbstractPresenter> extend
         }
     }
 
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        //TODO delete header and back button/menus
+    }
+
     protected void setHeaderTitle(String title) {
-        if (context instanceof TitleChangeableActivity) {
-            ((TitleChangeableActivity) context).setTitle(title);
+        if (context instanceof ToolbarHandler) {
+            ((ToolbarHandler) context).setTitle(title);
         }
     }
 }

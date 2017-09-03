@@ -12,7 +12,6 @@ import android.widget.Toast;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
-import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 import com.pashkobohdan.spritzreaderpro.R;
 import com.pashkobohdan.spritzreaderpro.application.SpritzProApplication;
@@ -20,6 +19,7 @@ import com.pashkobohdan.spritzreaderpro.application.model.dto.book.BookDTO;
 import com.pashkobohdan.spritzreaderpro.application.mvp.bookList.BookListPresenter;
 import com.pashkobohdan.spritzreaderpro.application.mvp.bookList.view.BookListView;
 import com.pashkobohdan.spritzreaderpro.application.ui.adapter.AbstractListItemHolder;
+import com.pashkobohdan.spritzreaderpro.application.ui.dialog.BookEditDialog;
 import com.pashkobohdan.spritzreaderpro.application.ui.fragments.book.widget.BookListItemWidget;
 import com.pashkobohdan.spritzreaderpro.application.ui.fragments.common.AbstractListFragment;
 import com.pashkobohdan.spritzreaderpro.application.utils.ui.DialogUtils;
@@ -32,6 +32,7 @@ import javax.inject.Provider;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class BookListFragment extends AbstractListFragment<BookListPresenter, BookDTO> implements BookListView {
 
@@ -48,12 +49,24 @@ public class BookListFragment extends AbstractListFragment<BookListPresenter, Bo
     ProgressBar waiterProgressBar;
     @BindView(R.id.add_book_fab_menu)
     FloatingActionMenu addBookActionMenu;
-    @BindView(R.id.add_book_from_file_fab)
-    FloatingActionButton addBookFromFileButton;
-    @BindView(R.id.add_book_create_fab)
-    FloatingActionButton createBookButton;
-    @BindView(R.id.add_book_download_fab)
-    FloatingActionButton downloadBookButton;
+
+    @OnClick(R.id.add_book_from_file_fab)
+    void addBookFromFileButtonClicked() {
+        addBookActionMenu.close(true);
+        //TODO open select file chooser
+    }
+
+    @OnClick(R.id.add_book_create_fab)
+    void createBookButtonClicked() {
+        addBookActionMenu.close(true);
+        showCreateNewBookDialog();
+    }
+
+    @OnClick(R.id.add_book_download_fab)
+    void downloadBookButtonClicked() {
+        addBookActionMenu.close(true);
+        //TODO open download book dialog/fragment
+    }
 
     private ListAdapter adapter;
 
@@ -106,16 +119,6 @@ public class BookListFragment extends AbstractListFragment<BookListPresenter, Bo
                 }
             }
         });
-
-        addBookFromFileButton.setOnClickListener(v -> {
-            //TODO open select file chooser
-        });
-        createBookButton.setOnClickListener(v -> {
-            //TODO show create book dialog
-        });
-        downloadBookButton.setOnClickListener(v -> {
-            //TODO open download book dialog/fragment
-        });
     }
 
     @Override
@@ -138,6 +141,17 @@ public class BookListFragment extends AbstractListFragment<BookListPresenter, Bo
     public void deleteBook(int deletedBookPosition) {
         adapter.notifyItemChanged(deletedBookPosition);
         adapter.notifyItemChanged(deletedBookPosition + 1);//TODO think about this
+    }
+
+    private void showCreateNewBookDialog() {
+        BookEditDialog dialog = new BookEditDialog(getContext(), null, bookDTO -> {
+            //TODO send to presenter
+            Toast.makeText(getContext(), "new book created !", Toast.LENGTH_SHORT).show();
+        }, () -> {
+            Toast.makeText(getContext(), "dialog cancelled !", Toast.LENGTH_SHORT).show();
+            //TODO nothing ?
+        });
+        dialog.show();
     }
 
     @Override

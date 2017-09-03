@@ -39,6 +39,18 @@ public class BookDTO extends CommonDTO {
         this.lastOpenDate = lastOpenDate;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
     public String getName() {
         return name;
     }

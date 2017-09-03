@@ -84,9 +84,4 @@ public abstract class CustomFragmentNavigator extends SupportFragmentNavigator {
             showSystemMessage(((SystemMessage) command).getMessage());
         }
     }
-
-    @Override
-    protected void exit() {
-        //nop
-    }
 }
